@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:g62_find_home/app/routes/app_views.dart';
 import 'package:g62_find_home/app/routes/routes_name.dart';
 import 'package:g62_find_home/app/ui/views/login/login_view.dart';
@@ -19,13 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ScreenUtilInit(
+      designSize: const Size(393, 852),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => GetMaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: RoutesName.SPLASH,
+        getPages: AppViews.getViews,
       ),
-      initialRoute: RoutesName.SPLASH,
-      getPages: AppViews.getViews,
     );
   }
 }

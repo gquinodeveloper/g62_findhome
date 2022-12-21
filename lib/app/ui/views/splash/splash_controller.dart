@@ -1,9 +1,10 @@
+import 'package:g62_find_home/app/routes/routes_name.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
+    _initialize();
     super.onInit();
   }
 
@@ -17,5 +18,17 @@ class SplashController extends GetxController {
   void onClose() {
     // TODO: implement onClose
     super.onClose();
+  }
+
+  //Instances
+
+  //Variables
+
+  //Functions
+
+  void _initialize() async {
+    await Future.delayed(const Duration(seconds: 2), () {
+      Get.offNamed(RoutesName.LOGIN);
+    });
   }
 }

@@ -11,7 +11,7 @@ extension Environment on ENV {
       case ENV.DESA:
         return {
           "Environment": "DESARROLLO",
-          "baseUrl": "https://api-reservation-flutter.herokuapp.com",
+          "baseUrl": "https://benboot-develop.herokuapp.com",
           "connectTimeout": 60000,
           "receiveTimeout": 60000,
           "sendTimeout": 60000,

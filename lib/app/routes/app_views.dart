@@ -1,4 +1,6 @@
 import 'package:g62_find_home/app/routes/routes_name.dart';
+import 'package:g62_find_home/app/ui/views/home/home_binding.dart';
+import 'package:g62_find_home/app/ui/views/home/home_view.dart';
 import 'package:g62_find_home/app/ui/views/login/login_binding.dart';
 import 'package:g62_find_home/app/ui/views/login/login_view.dart';
 import 'package:g62_find_home/app/ui/views/register/register_binding.dart';
@@ -23,6 +25,26 @@ abstract class AppViews {
       name: RoutesName.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.HOME,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
     ),
   ];
 }
