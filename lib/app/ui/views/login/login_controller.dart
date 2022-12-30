@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:g62_find_home/app/data/models/request/request_authentication_model.dart';
 import 'package:g62_find_home/app/data/respositories/authentication_repository.dart';
 import 'package:g62_find_home/app/routes/routes_name.dart';
 import 'package:g62_find_home/app/services/local_storage_service.dart';
 import 'package:g62_find_home/core/utils/keys.dart';
+import 'package:g62_find_home/core/utils/popup_messages.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
@@ -27,15 +30,22 @@ class LoginController extends GetxController {
   }
 
   //Instances
-  final _repositoryAuthentication = Get.find<AuthenticationRepository>();
+  final _authenticationRepository = Get.find<AuthenticationRepository>();
 
   //Variables
   RxBool isLoading = RxBool(false);
   RxBool isObscureText = RxBool(false);
 
+  //TextEditingController
+  TextEditingController ctrlTextEmail = TextEditingController();
+  TextEditingController ctrlTextPassword = TextEditingController();
+
   //Functions
 
-  void _initialize() {}
+  void _initialize() {
+    ctrlTextEmail.text = "danielgallo@gmail.com";
+    ctrlTextPassword.text = "123";
+  }
 
   void showPassword() {
     isObscureText.value = !isObscureText.value;
@@ -44,33 +54,37 @@ class LoginController extends GetxController {
   void doAuthentication() async {
     try {
       isLoading.value = true;
-      final response = await _repositoryAuthentication.authentication(
+      final email = ctrlTextEmail.text;
+      final password = ctrlTextPassword.text;
+
+      final response = await _authenticationRepository.authentication(
         RequestAuthenticationModel(
-          email: "gustavo.test@gmail.com",
-          password: "Demo1234",
+          email: email,
+          password: password,
         ),
       );
       if (response.success == true) {
         await LocalStorageService.set(
-          key: Keys.kTempo,
-          value: jsonEncode(response.user?.toJson()),
-        );
-
-        await LocalStorageService.set(
           key: Keys.kToken,
-          value: response.accessToken ?? "",
+          value: response.requestToken ?? "",
         );
 
         await LocalStorageService.set(
-          key: Keys.kUserFullName,
-          value: "${response.user?.firstName} ${response.user?.lastName}",
+          key: Keys.kIdUser,
+          value: response.idUser ?? "",
         );
+
         isLoading.value = false;
         Get.offNamed(RoutesName.HOME);
       }
-    } catch (error) {
+    } on DioError catch (error) {
       isLoading.value = false;
-      Get.snackbar("error", error.toString());
+      PopUpMessages.show(
+        error.response?.data["message"],
+        title: error.error,
+      );
+    } finally {
+      isLoading.value = false;
     }
   }
 }

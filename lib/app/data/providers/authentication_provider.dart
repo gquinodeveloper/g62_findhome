@@ -10,7 +10,7 @@ class AuthenticationProvider {
     RequestAuthenticationModel request,
   ) async {
     final response = await _dio.post(
-      "/api/account/login",
+      "/api/user/auth",
       data: request.toMap(),
     );
     return ResponseAuthenticationModel.fromJson(response.data);

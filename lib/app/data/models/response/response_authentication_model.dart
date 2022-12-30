@@ -1,23 +1,26 @@
-/* class ResponseAuthenticationModel {
+class ResponseAuthenticationModel {
   ResponseAuthenticationModel({
     this.success,
     this.requestToken,
     this.idUser,
+    this.message,
   });
 
   bool? success;
   String? requestToken;
   String? idUser;
+  String? message;
 
   factory ResponseAuthenticationModel.fromJson(Map<String, dynamic> json) =>
       ResponseAuthenticationModel(
-        success: json["success"],
-        requestToken: json["requestToken"],
-        idUser: json["idUser"],
+        success: json["success"] ?? "",
+        message: json["message"] ?? "",
+        requestToken: json["request_token"] ?? "",
+        idUser: json["id_user"].toString(),
       );
 }
- */
 
+/* 
 class ResponseAuthenticationModel {
   ResponseAuthenticationModel({
     this.success,
@@ -129,4 +132,4 @@ class Country {
         "locale": locale,
         "currency_id": currencyId,
     }; */
-}
+} */

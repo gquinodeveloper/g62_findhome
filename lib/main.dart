@@ -7,6 +7,7 @@ import 'package:g62_find_home/core/config/app_config.dart';
 import 'package:g62_find_home/core/network/dio_config.dart';
 import 'package:g62_find_home/core/utils/dependency_injection.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 void main() {
   AppConfig.initialize();
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => GetMaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

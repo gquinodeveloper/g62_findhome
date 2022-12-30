@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:g62_find_home/app/routes/routes_name.dart';
 import 'package:g62_find_home/app/ui/components/buttons/btn_prymary.dart';
 import 'package:g62_find_home/app/ui/components/textfields/input_text.dart';
 import 'package:g62_find_home/app/ui/views/login/login_controller.dart';
@@ -38,6 +39,7 @@ class FormLogin extends GetView<LoginController> {
               ),
               SizedBox(height: 50.h),
               InputText(
+                controller: controller.ctrlTextEmail,
                 iconPrefix: Icons.email_outlined,
                 iconColor: AppColors.light,
                 border: InputBorder.none,
@@ -53,6 +55,7 @@ class FormLogin extends GetView<LoginController> {
               SizedBox(height: 20.h),
               Obx(
                 () => InputText(
+                  controller: controller.ctrlTextPassword,
                   iconPrefix: Icons.lock,
                   iconColor: AppColors.light,
                   border: InputBorder.none,
@@ -104,7 +107,7 @@ class FormLogin extends GetView<LoginController> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: null, //controller.goToRegister,
+                    onTap: () => Get.toNamed(RoutesName.REGISTER),
                     child: Text(
                       "Create new account",
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(
